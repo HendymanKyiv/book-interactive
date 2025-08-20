@@ -3,9 +3,99 @@
 <head>
   <meta charset="UTF-8">
   <title>Интерактивная книга</title>
-  <meta http-equiv="refresh" content="0; url=https://raw.githack.com/HendymanKyiv/book-interactive/main/index.html">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #111;
+      color: #eee;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    .page {
+      width: 90vw;
+      max-width: 600px;
+      height: 80vh;
+      background: #222;
+      border: 1px solid #444;
+      padding: 2rem;
+      box-sizing: border-box;
+      overflow-y: auto;
+      display: none;
+    }
+    .page.active {
+      display: block;
+    }
+    .nav {
+      position: fixed;
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 1rem;
+    }
+    .nav button {
+      padding: 0.5rem 1rem;
+      background: #444;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+    }
+    .nav button:hover {
+      background: #666;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      margin: 1rem 0;
+    }
+  </style>
 </head>
 <body>
-  Если вы не перенаправлены, нажмите <a href="https://raw.githack.com/HendymanKyiv/book-interactive/main/index.html">сюда</a>.
+
+  <!-- Глава 1 -->
+  <div class="page active">
+    <h1>Глава 1. Искусство непрямого влияния</h1>
+    <p>«Каждый из нас — марионетка…»</p>
+    <img src="https://via.placeholder.com/600x300/000/fff?text=Глава+1" alt="Глава 1">
+  </div>
+
+  <!-- Глава 2 -->
+  <div class="page">
+    <h1>Глава 2. Власть над собой</h1>
+    <p>Настоящая власть начинается с порядка…</p>
+    <img src="https://via.placeholder.com/600x300/111/eee?text=Глава+2" alt="Глава 2">
+  </div>
+
+  <!-- Глава 3 -->
+  <div class="page">
+    <h1>Глава 3. Покорность и манипуляция</h1>
+    <p>Кажущаяся слабость может быть оружием…</p>
+    <img src="https://via.placeholder.com/600x300/222/ddd?text=Глава+3" alt="Глава 3">
+  </div>
+
+  <!-- Навигация -->
+  <div class="nav">
+    <button onclick="prevPage()">← Назад</button>
+    <button onclick="nextPage()">Вперёд →</button>
+  </div>
+
+  <script>
+    const pages = document.querySelectorAll('.page');
+    let current = 0;
+
+    function show(index) {
+      pages.forEach((p, i) => p.classList.toggle('active', i === index));
+    }
+    function nextPage() {
+      if (current < pages.length - 1) show(++current);
+    }
+    function prevPage() {
+      if (current > 0) show(--current);
+    }
+  </script>
 </body>
 </html>
